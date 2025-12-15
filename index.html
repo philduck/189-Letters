@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>198 Letters for You</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>198 Letters for You</h1>
+<p>Click a letter to expand it.</p>
+
+<div id="lettersContainer"></div>
+
+<script src="letters.js"></script>
+<script>
+const container = document.getElementById("lettersContainer");
+
+letters.forEach((letter, index) => {
+  // Create a container div for each letter
+  const letterDiv = document.createElement("div");
+  letterDiv.className = "letter";
+
+  // Title
+  const title = document.createElement("div");
+  title.className = "letterTitle";
+  title.textContent = letter.title;
+
+  // Content (hidden by default)
+  const content = document.createElement("div");
+  content.className = "letterContent";
+  content.innerHTML = letter.content.replace(/\n/g, "<br>");
+  content.style.display = "none"; // hidden initially
+
+  // Toggle display on click
+  title.onclick = () => {
+    content.style.display = content.style.display === "none" ? "block" : "none";
+  };
+
+  // Append to container
+  letterDiv.appendChild(title);
+  letterDiv.appendChild(content);
+  container.appendChild(letterDiv);
+});
+</script>
+
+</body>
+</html>
